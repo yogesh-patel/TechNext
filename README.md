@@ -1,0 +1,4 @@
+# TechNext
+
+- npm install
+- gulp
