@@ -6,3 +6,106 @@
     height:60px;
     border-bottom: 1px solid gray;
 }
+
+.countBox{
+    border: 1px solid red;
+    background-color: red;
+    position: relative;
+}
+
+.count{
+    color:#FFFFFF;
+    margin: 10px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.emp-item{
+    color:#000000;
+    font-size: 20px;
+    padding:10px;
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.emp-item:hover{
+    background-color: #00b3ee;
+    color:#FFFFFF;
+}
+
+.emp-item.selected{
+    background-color: #000088;
+    color:#FFFFFF;
+}
+
+.tool-bar{
+    height:40px;
+    background-color: #CCCCCC;
+    padding:10px;
+}
+
+.searchBox{
+    height:30px;
+    width:200px;
+    font-size: 20px;
+    float:left;
+}
+
+.add-button{
+    font-size: 15px;
+    float: right;
+    line-height: 0;
+    padding: 11px;
+    height: 35px;
+}
+
+.profile-box{
+    margin-left:50px;
+    float:left;
+
+}
+
+.field-label{
+    font-size: 20px;
+    padding: 22px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+}
+
+.input-box{
+    padding-left: 20px;
+}
+.form-input{
+    font-size: 20px;
+    padding:15px;
+}
+
+.project-header{
+    height:40px;
+    background-color: #CCCCCC;
+    padding:10px;
+    font-size:24px;
+}
+
+.highlight-item{
+    color:yellow;
+    text-decoration: underline;
+    background-color: #999999;
+}
+
+.cancel-button{
+    float:left;
+    font-size: 20px;
+    color:#FFFFFF;
+    background-color: red;
+    margin-left:10px;
+}
+
+.submit-button{
+    float:right;
+    font-size: 20px;
+    color:#FFFFFF;
+    background-color: green;
+    margin-right:10px;
+}
+
