@@ -1,0 +1,8 @@
+.box{
+    border:1px solid red;
+}
+
+.header{
+    height:60px;
+    border-bottom: 1px solid gray;
+}
