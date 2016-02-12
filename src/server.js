@@ -12,7 +12,7 @@ require("babel/register");
 dist = path.join(__dirname, '/../dist');
 app = express();
 app.use(express["static"](dist));
-app.set("port", process.env.PORT || 3003);
+app.set("port", process.env.PORT || 3008);
 
 server = http.createServer(app);
 
