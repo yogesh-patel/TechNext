@@ -5,25 +5,34 @@ import React from 'react';
 import EmployeeItem from './EmployeeItem.js';
 import ToolBar from './ToolBar.js';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 class LeftNavigation extends React.Component {
 
     render() {
-        var {employees,selectedEmployee,highlightedProject} = this.props;
+        var {emps,selectedEmployee,highlightedProject}
+            = this.props;
 
-        var employeeRows = _.map(employees,(employee)=>{
+        var employeeRows = _.map(emps,(employee)=>{
             return <EmployeeItem employee={employee}
                                  key={employee.id}/>;
         });
 
         return (
             <div style={this.props.style}>
-                <ToolBar onSearch={this.props.onSearch}
-                         onAddEmployee={this.props.onAddEmployee}/>
+                <ToolBar />
                 {employeeRows}
             </div>
         );
     }
 }
 
-export default LeftNavigation;
+const mapStateToProps = (state) => ({
+    emps:state.employee.employees
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeftNavigation);

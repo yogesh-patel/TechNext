@@ -2,10 +2,17 @@
  * Created by synerzip on 12/02/16.
  */
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as appActionCreators from '../actions/app';
 
 class EmployeeItem extends React.Component{
 
 
+    onEmpSelected(){
+        var {appActions,employee} = this.props;
+        appActions.selectEmployee(employee);
+    }
 
     render(){
 
@@ -21,11 +28,20 @@ class EmployeeItem extends React.Component{
         }
 
         return (
-            <div className={styleClass} onClick={()=>this.props.onEmployeeSelected(employee)}>
+            <div className={styleClass}
+                 onClick={this.onEmpSelected.bind(this)}>
                 {employee.name}
             </div>
         );
     }
 }
 
-export default EmployeeItem;
+const mapStateToProps = (state) => ({
+    selectedEmployee:state.app.selectedEmployee
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    appActions: bindActionCreators(appActionCreators, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeItem);

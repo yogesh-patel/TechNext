@@ -13,12 +13,6 @@ class EmployeeEdit extends React.Component {
                              onEmployeeAdded={this.props.onEmployeeAdded}/>
             );
         }
-        return (
-
-            <div style={{color:'#CCCCCC',fontSize:30,padding:80,width:400,float:'left'}}>
-                Select Employee to Edit or Click on Add to Create Employee.
-            </div>
-        );
     }
 }
 

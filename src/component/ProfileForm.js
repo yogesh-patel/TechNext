@@ -2,47 +2,69 @@
  * Created by synerzip on 10/02/16.
  */
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as empActionCreators from '../actions/employee';
 
-class ProfileForm extends React.Component{
+class ProfileForm extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {
-            employeeId:props.selectedEmployee.id,
-            employeeName:props.selectedEmployee.name,
-            project:props.selectedEmployee.project
-        };
+
+        this.state = this.getInitialStateForEmployee();
+
     }
 
-    componentWillReceiveProps(nextProps,nextState){
-        if(nextProps.selectedEmployee != this.props.selectedEmployee){
+    getInitialStateForEmployee() {
+        //console.log(this.props.routeParams);
+        var {routeParams} = this.props;
+        if(routeParams.employeeId){
+            return {
+                employeeId: selectedEmployee.id,
+                employeeName: selectedEmployee.name,
+                project: selectedEmployee.project
+            }
+        }else{
+            return {
+                employeeId: null,
+                employeeName: null,
+                project: null
+            }
+        }
+
+    }
+
+    componentWillReceiveProps(nextProps, nextState) {
+        if (nextProps.selectedEmployee != this.props.selectedEmployee) {
             this.setState({
-                employeeId:nextProps.selectedEmployee.employeeId,
-                employeeName:nextProps.selectedEmployee.name,
-                project:nextProps.selectedEmployee.project
+                employeeId: nextProps.selectedEmployee.employeeId,
+                employeeName: nextProps.selectedEmployee.name,
+                project: nextProps.selectedEmployee.project
             });
         }
     }
 
-    onEmployeeNameChange(e){
-        this.setState({employeeName:e.target.value});
+    onEmployeeNameChange(e) {
+        this.setState({employeeName: e.target.value});
     }
 
-    onProjectChange(e){
-        this.setState({project:e.target.value});
+    onProjectChange(e) {
+        this.setState({project: e.target.value});
     }
 
-    onSubmit(){
-        if(this.props.selectedEmployee.id < 0){
-            this.props.onEmployeeAdded({
-                id:Math.floor((Math.random() * 100) + 1),
-                name:this.state.employeeName,
-                project:this.state.project
-            });
+    onSubmit() {
+        var {routeParams} = this.props;
+        if(routeParams.employeeId){
+
+        }else{
+            this.props.empActions.addEmployee({
+                name: this.state.employeeName,
+                project: this.state.project
+            },this.props.emps);
         }
     }
 
-    render(){
+    render() {
         var {employeeName,project} = this.state;
         return (
             <div className="profile-box">
@@ -51,7 +73,7 @@ class ProfileForm extends React.Component{
                 </div>
                 <div className="input-box">
                     <input type="text" placeholder="Employee Name" className="form-input"
-                        value={employeeName} onChange={this.onEmployeeNameChange.bind(this)}/>
+                           value={employeeName} onChange={this.onEmployeeNameChange.bind(this)}/>
                 </div>
 
                 <div className="field-label" style={{marginTop:20}}>
@@ -70,5 +92,13 @@ class ProfileForm extends React.Component{
         )
     }
 }
+const mapStateToProps = (state) => ({
+    emps:state.employee.employees,
+    selectedEmployee:state.app.selectedEmployee
+});
 
-export default ProfileForm;
+const mapDispatchToProps = (dispatch) => ({
+    empActions: bindActionCreators(empActionCreators, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);
