@@ -13,9 +13,6 @@ class LeftNavigation extends React.Component {
 
         var employeeRows = _.map(employees,(employee)=>{
             return <EmployeeItem employee={employee}
-                                 selectedEmployee={selectedEmployee}
-                                 onEmployeeSelected={this.props.onEmployeeSelected}
-                                 highlightedProject={highlightedProject}
                                  key={employee.id}/>;
         });
 
